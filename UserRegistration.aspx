@@ -5,97 +5,137 @@
 <head runat="server">
     <title>User Registration</title>
 
-    <!-- Font Awesome for icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
     <style>
         body {
-            font-family: 'Segoe UI', sans-serif;
-            background: linear-gradient(135deg, #4facfe, #00f2fe);
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #1f4037, #99f2c8);
             margin: 0;
-            padding: 0;
         }
 
+        /* Layout */
         .container {
-            max-width: 500px;
-            margin: 60px auto;
-            background: #fff;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            max-width: 1100px;
+            margin: 40px auto;
+            display: grid;
+            grid-template-columns: 450px 1fr;
+            gap: 25px;
         }
 
+        /* Cards */
+        .form-card, .grid-card {
+            background: #ffffff;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        /* Title */
         h2 {
             text-align: center;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
+            color: #333;
         }
 
+        /* Input */
         .input-group {
-            position: relative;
-            margin-bottom: 15px;
+            margin-bottom: 18px;
         }
 
-        .input-group i {
-            position: absolute;
-            top: 12px;
-            left: 10px;
-            color: #888;
+            .input-group label {
+                display: block;
+                margin-bottom: 6px;
+                font-weight: 500;
+                color: #444;
+            }
+
+            .input-group input {
+                width: 100%;
+                padding: 12px;
+                border-radius: 8px;
+                border: 1px solid #ccc;
+                transition: 0.3s;
+            }
+
+                .input-group input:focus {
+                    border-color: #00b894;
+                    box-shadow: 0 0 6px rgba(0,184,148,0.4);
+                    outline: none;
+                }
+
+        /* 🔥 Modern Gender Buttons */
+        .gender-group {
+            display: flex;
+            gap: 10px;
         }
 
-        .input-group input {
-            width: 100%;
-            padding: 10px 10px 10px 35px;
-            border-radius: 8px;
-            border: 1px solid #ccc;
-        }
+            .gender-group input {
+                display: none;
+            }
 
-        .input-group input:focus {
-            border-color: #4facfe;
-            outline: none;
-        }
+            .gender-group label {
+                padding: 8px 15px;
+                border: 1px solid #00b894;
+                border-radius: 20px;
+                cursor: pointer;
+                transition: 0.3s;
+                color: #00b894;
+            }
 
+            .gender-group input:checked + label {
+                background: #00b894;
+                color: white;
+            }
+
+        /* Buttons */
         .btn {
             width: 100%;
             padding: 12px;
-            background: linear-gradient(135deg, #4facfe, #00c6ff);
-            border: none;
-            color: white;
             border-radius: 8px;
-            font-size: 16px;
-            cursor: pointer;
-        }
-
-        .btn:hover {
-            background: linear-gradient(135deg, #00c6ff, #0072ff);
-        }
-
-        #lblMessage {
-            display: block;
-            text-align: center;
+            border: none;
+            background: linear-gradient(135deg, #00b894, #00cec9);
+            color: white;
+            font-size: 15px;
             margin-top: 10px;
-            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
         }
 
-        #gvUserInfo {
-            margin-top: 25px;
+            .btn:hover {
+                transform: translateY(-2px);
+            }
+
+        /* Message */
+        .success {
+            color: green;
+        }
+
+        .error {
+            color: red;
+        }
+
+        /* Grid */
+        .grid {
             width: 100%;
             border-collapse: collapse;
         }
 
-        #gvUserInfo th {
-            background: #0072ff;
-            color: white;
-            padding: 10px;
-        }
+            .grid th {
+                background: #00b894;
+                color: white;
+                padding: 12px;
+            }
 
-        #gvUserInfo td {
-            padding: 10px;
-            border-bottom: 1px solid #ddd;
-        }
+            .grid td {
+                padding: 10px;
+                border-bottom: 1px solid #eee;
+            }
 
-        #gvUserInfo tr:hover {
-            background: #f1f9ff;
-        }
+            .grid tr:hover {
+                background: #f1fffb;
+            }
     </style>
 </head>
 
@@ -103,46 +143,59 @@
     <form id="form1" runat="server">
         <div class="container">
 
-            <h2>User Registration</h2>
+            <!-- FORM -->
+            <div class="form-card">
 
-            <!-- Username -->
-            <div class="input-group">
-                <i class="fa fa-user"></i>
-                <asp:TextBox ID="txtUserName" runat="server" placeholder="Enter User Name"></asp:TextBox>
+                <h2>User Registration</h2>
+
+                <div class="input-group">
+                    <label>User Name</label>
+                    <asp:TextBox ID="txtUserName" runat="server"></asp:TextBox>
+                </div>
+
+                <div class="input-group">
+                    <label>Age</label>
+                    <asp:TextBox ID="txtAge" runat="server"></asp:TextBox>
+                </div>
+
+                <div class="input-group">
+                    <label>Gender</label>
+
+                    <asp:RadioButtonList ID="rblGender" runat="server" CssClass="gender-group" RepeatDirection="Horizontal">
+                        <asp:ListItem Text="Male" Value="Male" />
+                        <asp:ListItem Text="Female" Value="Female" />
+                    </asp:RadioButtonList>
+                </div>
+
+                <div class="input-group">
+                    <label>Mobile</label>
+                    <asp:TextBox ID="txtMobile" runat="server"></asp:TextBox>
+                </div>
+
+                <div class="input-group">
+                    <label>Email</label>
+                    <asp:TextBox ID="txtEmail" runat="server"></asp:TextBox>
+                </div>
+
+                <asp:Button ID="btnInsert" runat="server" Text="Register" CssClass="btn" OnClick="btnInsert_Click" />
+                <asp:Button ID="btnReset" runat="server" Text="Reset" CssClass="btn" OnClick="btnReset_Click" />
+
+                <asp:Label ID="lblMessage" runat="server" />
+
             </div>
 
-            <!-- Age -->
-            <div class="input-group">
-                <i class="fa fa-calendar"></i>
-                <asp:TextBox ID="txtAge" runat="server" placeholder="Enter Age"></asp:TextBox>
+            <!-- GRID -->
+            <div class="grid-card">
+                <asp:GridView ID="gvUserInfo" runat="server" AutoGenerateColumns="false" CssClass="grid">
+                    <Columns>
+                        <asp:BoundField DataField="UserName" HeaderText="Name" />
+                        <asp:BoundField DataField="Age" HeaderText="Age" />
+                        <asp:BoundField DataField="Gender" HeaderText="Gender" />
+                        <asp:BoundField DataField="Mobile" HeaderText="Mobile" />
+                        <asp:BoundField DataField="Email" HeaderText="Email" />
+                    </Columns>
+                </asp:GridView>
             </div>
-
-            <!-- Gender -->
-            <div class="input-group">
-                <i class="fa fa-venus-mars"></i>
-                <asp:TextBox ID="txtGender" runat="server" placeholder="Enter Gender"></asp:TextBox>
-            </div>
-
-            <!-- Mobile -->
-            <div class="input-group">
-                <i class="fa fa-phone"></i>
-                <asp:TextBox ID="txtMobile" runat="server" placeholder="Mobile Number"></asp:TextBox>
-            </div>
-
-            <!-- Email -->
-            <div class="input-group">
-                <i class="fa fa-envelope"></i>
-                <asp:TextBox ID="txtEmail" runat="server" placeholder="Email Address"></asp:TextBox>
-            </div>
-
-            <!-- Button -->
-            <asp:Button ID="btnInsert" runat="server" Text="Register" CssClass="btn" OnClick="btnInsert_Click" />
-
-            <!-- Message -->
-            <asp:Label ID="lblMessage" runat="server" />
-
-            <!-- Grid -->
-            <asp:GridView ID="gvUserInfo" runat="server"></asp:GridView>
 
         </div>
     </form>

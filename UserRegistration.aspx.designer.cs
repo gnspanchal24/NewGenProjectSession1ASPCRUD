@@ -42,13 +42,13 @@ namespace NewGenProjectSession1ASPCRUD
         protected global::System.Web.UI.WebControls.TextBox txtAge;
 
         /// <summary>
-        /// txtGender control.
+        /// rblGender control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtGender;
+        protected global::System.Web.UI.WebControls.RadioButtonList rblGender;
 
         /// <summary>
         /// txtMobile control.
@@ -76,6 +76,15 @@ namespace NewGenProjectSession1ASPCRUD
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnInsert;
+
+        /// <summary>
+        /// btnReset control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnReset;
 
         /// <summary>
         /// lblMessage control.
